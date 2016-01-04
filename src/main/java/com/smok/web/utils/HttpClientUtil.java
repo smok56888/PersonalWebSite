@@ -21,6 +21,7 @@ public class HttpClientUtil {
     private static final PoolingHttpClientConnectionManager connectionManager = new PoolingHttpClientConnectionManager();
 
     private static CloseableHttpClient httpClient = null;
+
     static {
         connectionManager.setMaxTotal(30);
         connectionManager.setDefaultMaxPerRoute(10);
@@ -55,14 +56,14 @@ public class HttpClientUtil {
                 try {
                     response.close();
                 } catch (Exception e) {
-                    // TODO: handle exception
+                    e.printStackTrace();
                 }
             }
             if (httpPost != null) {
                 try {
                     httpPost.releaseConnection();
                 } catch (Exception e) {
-                    // TODO: handle exception
+                    e.printStackTrace();
                 }
             }
         }
@@ -95,14 +96,14 @@ public class HttpClientUtil {
                 try {
                     response.close();
                 } catch (Exception e) {
-                    // TODO: handle exception
+                    e.printStackTrace();
                 }
             }
             if (httpGet != null) {
                 try {
                     httpGet.releaseConnection();
                 } catch (Exception e) {
-                    // TODO: handle exception
+                    e.printStackTrace();
                 }
             }
         }

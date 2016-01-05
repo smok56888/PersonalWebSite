@@ -13,6 +13,18 @@
     <mvc:resources mapping="/images/**" location="/resources/images/" />
     <mvc:resources mapping="/html/**" location="/resources/html/" />
 
+    <!-- 配置拦截器 -->
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/user/**" />
+            <bean class="com.smok.web.interceptor.CommonInterceptor"></bean>
+        </mvc:interceptor>
+        <mvc:interceptor>
+            <mvc:mapping path="/demo/**" />
+            <bean class="com.smok.web.interceptor.DemoInterceptor"></bean>
+        </mvc:interceptor>
+    </mvc:interceptors>
+
     <!-- 配置velocity引擎 -->
     <bean id="viewResolver"
           class="org.springframework.web.servlet.view.velocity.VelocityViewResolver">

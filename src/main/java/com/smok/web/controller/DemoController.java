@@ -92,7 +92,7 @@ public class DemoController {
 
     // 302跳转
     @RequestMapping(value = "/redirect")
-    public String redirect(){
+    public String redirect() {
         return "redirect:/demo/model";
     }
 

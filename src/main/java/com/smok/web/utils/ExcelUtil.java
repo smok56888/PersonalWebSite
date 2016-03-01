@@ -108,6 +108,40 @@ public class ExcelUtil {
     }
 
     /**
+     * 合并两个sheet的所有行，要求cellType都是string类型
+     *
+     * @param st1
+     * @param st2
+     * @return
+     * @throws Exception
+     */
+    public static Workbook combineSheet(Sheet st1, Sheet st2) throws Exception {
+
+        Workbook wb = new XSSFWorkbook();
+        Sheet sheet = wb.createSheet("combine");
+
+        int rowNo = appendSheet(sheet, st1, 0);
+        appendSheet(sheet, st2, rowNo);
+        return wb;
+    }
+
+    private static int appendSheet(Sheet st1, Sheet st2, int rowNo) throws  Exception {
+        Iterator<Row> rowIter = st2.rowIterator();
+        while (rowIter.hasNext()) {
+            Row newRow = st1.createRow(rowNo++);
+            int cellNo = 0;
+
+            Row row = rowIter.next();
+            Iterator<Cell> cellIter = row.cellIterator();
+            while (cellIter.hasNext()) {
+                Cell cell = cellIter.next();
+                newRow.createCell(cellNo++, cell.getCellType()).setCellValue(cell.getStringCellValue());
+            }
+        }
+        return rowNo;
+    }
+
+    /**
      * 创建文件
      *
      * @param workbook   excel数据

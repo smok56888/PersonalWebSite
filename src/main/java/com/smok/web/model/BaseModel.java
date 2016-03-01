@@ -8,6 +8,14 @@ public class BaseModel {
     private String key;
     private String value;
 
+    public BaseModel() {
+    }
+
+    public BaseModel(String key, String value) {
+        this.key = key;
+        this.value = value;
+    }
+
     public String getValue() {
         return value;
     }
